@@ -10,6 +10,8 @@ GEN_OPTS__FLAG := @"./device.opt"
 GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
 
 ORDERED_OBJS += \
+"./Encoder.o" \
+"./Motor.o" \
 "./main.o" \
 "./ti_msp_dl_config.o" \
 "./startup_mspm0g350x_ticlang.o" \
@@ -157,8 +159,8 @@ mspm0-modules.out: $(OBJS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "Drivers\MPU6050\inv_mpu.o" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.o" "Drivers\MPU6050\mpu6050.o" "Drivers\MPU6050\mspm0_i2c.o" "Drivers\MSPM0\clock.o" "Drivers\MSPM0\interrupt.o" "Drivers\OLED_Software_I2C\oled_software_i2c.o" 
-	-$(RM) "main.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "Drivers\MPU6050\inv_mpu.d" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.d" "Drivers\MPU6050\mpu6050.d" "Drivers\MPU6050\mspm0_i2c.d" "Drivers\MSPM0\clock.d" "Drivers\MSPM0\interrupt.d" "Drivers\OLED_Software_I2C\oled_software_i2c.d" 
+	-$(RM) "Encoder.o" "Motor.o" "main.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "Drivers\MPU6050\inv_mpu.o" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.o" "Drivers\MPU6050\mpu6050.o" "Drivers\MPU6050\mspm0_i2c.o" "Drivers\MSPM0\clock.o" "Drivers\MSPM0\interrupt.o" "Drivers\OLED_Software_I2C\oled_software_i2c.o" 
+	-$(RM) "Encoder.d" "Motor.d" "main.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "Drivers\MPU6050\inv_mpu.d" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.d" "Drivers\MPU6050\mpu6050.d" "Drivers\MPU6050\mspm0_i2c.d" "Drivers\MSPM0\clock.d" "Drivers\MSPM0\interrupt.d" "Drivers\OLED_Software_I2C\oled_software_i2c.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

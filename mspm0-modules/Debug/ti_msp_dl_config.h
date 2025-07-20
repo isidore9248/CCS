@@ -78,6 +78,26 @@ extern "C" {
 
 
 
+/* Defines for Motor */
+#define Motor_INST                                                         TIMG0
+#define Motor_INST_IRQHandler                                   TIMG0_IRQHandler
+#define Motor_INST_INT_IRQN                                     (TIMG0_INT_IRQn)
+#define Motor_INST_CLK_FREQ                                               125000
+/* GPIO defines for channel 0 */
+#define GPIO_Motor_C0_PORT                                                 GPIOB
+#define GPIO_Motor_C0_PIN                                         DL_GPIO_PIN_10
+#define GPIO_Motor_C0_IOMUX                                      (IOMUX_PINCM27)
+#define GPIO_Motor_C0_IOMUX_FUNC                     IOMUX_PINCM27_PF_TIMG0_CCP0
+#define GPIO_Motor_C0_IDX                                    DL_TIMER_CC_0_INDEX
+/* GPIO defines for channel 1 */
+#define GPIO_Motor_C1_PORT                                                 GPIOB
+#define GPIO_Motor_C1_PIN                                         DL_GPIO_PIN_11
+#define GPIO_Motor_C1_IOMUX                                      (IOMUX_PINCM28)
+#define GPIO_Motor_C1_IOMUX_FUNC                     IOMUX_PINCM28_PF_TIMG0_CCP1
+#define GPIO_Motor_C1_IDX                                    DL_TIMER_CC_1_INDEX
+
+
+
 
 /* Defines for I2C_MPU6050 */
 #define I2C_MPU6050_INST                                                    I2C0
@@ -95,16 +115,17 @@ extern "C" {
 
 
 
-/* Port definition for Pin Group GPIO_MPU6050 */
-#define GPIO_MPU6050_PORT                                                (GPIOA)
+/* Port definition for Pin Group GPIO_MPU6050222 */
+#define GPIO_MPU6050222_PORT                                             (GPIOA)
 
 /* Defines for PIN_MPU6050_INT: GPIOA.23 with pinCMx 53 on package pin 24 */
-// pins affected by this interrupt request:["PIN_MPU6050_INT"]
-#define GPIO_MPU6050_INT_IRQN                                   (GPIOA_INT_IRQn)
-#define GPIO_MPU6050_INT_IIDX                   (DL_INTERRUPT_GROUP1_IIDX_GPIOA)
-#define GPIO_MPU6050_PIN_MPU6050_INT_IIDX                   (DL_GPIO_IIDX_DIO23)
-#define GPIO_MPU6050_PIN_MPU6050_INT_PIN                        (DL_GPIO_PIN_23)
-#define GPIO_MPU6050_PIN_MPU6050_INT_IOMUX                       (IOMUX_PINCM53)
+// groups represented: ["GPIO_Encoder","GPIO_MPU6050222"]
+// pins affected: ["EncoderA","PIN_MPU6050_INT"]
+#define GPIO_MULTIPLE_GPIOA_INT_IRQN                            (GPIOA_INT_IRQn)
+#define GPIO_MULTIPLE_GPIOA_INT_IIDX            (DL_INTERRUPT_GROUP1_IIDX_GPIOA)
+#define GPIO_MPU6050222_PIN_MPU6050_INT_IIDX                (DL_GPIO_IIDX_DIO23)
+#define GPIO_MPU6050222_PIN_MPU6050_INT_PIN                     (DL_GPIO_PIN_23)
+#define GPIO_MPU6050222_PIN_MPU6050_INT_IOMUX                    (IOMUX_PINCM53)
 /* Port definition for Pin Group GPIO_OLED */
 #define GPIO_OLED_PORT                                                   (GPIOB)
 
@@ -114,6 +135,37 @@ extern "C" {
 /* Defines for PIN_OLED_SDA: GPIOB.8 with pinCMx 25 on package pin 60 */
 #define GPIO_OLED_PIN_OLED_SDA_PIN                               (DL_GPIO_PIN_8)
 #define GPIO_OLED_PIN_OLED_SDA_IOMUX                             (IOMUX_PINCM25)
+/* Port definition for Pin Group GPIO_Motor1 */
+#define GPIO_Motor1_PORT                                                 (GPIOB)
+
+/* Defines for PIN_AIN1: GPIOB.6 with pinCMx 23 on package pin 58 */
+#define GPIO_Motor1_PIN_AIN1_PIN                                 (DL_GPIO_PIN_6)
+#define GPIO_Motor1_PIN_AIN1_IOMUX                               (IOMUX_PINCM23)
+/* Defines for PIN_AIN2: GPIOB.26 with pinCMx 57 on package pin 28 */
+#define GPIO_Motor1_PIN_AIN2_PIN                                (DL_GPIO_PIN_26)
+#define GPIO_Motor1_PIN_AIN2_IOMUX                               (IOMUX_PINCM57)
+/* Port definition for Pin Group GPIO_Motor2 */
+#define GPIO_Motor2_PORT                                                 (GPIOB)
+
+/* Defines for PIN_BIN1: GPIOB.14 with pinCMx 31 on package pin 2 */
+#define GPIO_Motor2_PIN_BIN1_PIN                                (DL_GPIO_PIN_14)
+#define GPIO_Motor2_PIN_BIN1_IOMUX                               (IOMUX_PINCM31)
+/* Defines for PIN_BIN2: GPIOB.16 with pinCMx 33 on package pin 4 */
+#define GPIO_Motor2_PIN_BIN2_PIN                                (DL_GPIO_PIN_16)
+#define GPIO_Motor2_PIN_BIN2_IOMUX                               (IOMUX_PINCM33)
+/* Defines for EncoderA: GPIOA.2 with pinCMx 7 on package pin 42 */
+#define GPIO_Encoder_EncoderA_PORT                                       (GPIOA)
+#define GPIO_Encoder_EncoderA_IIDX                           (DL_GPIO_IIDX_DIO2)
+#define GPIO_Encoder_EncoderA_PIN                                (DL_GPIO_PIN_2)
+#define GPIO_Encoder_EncoderA_IOMUX                               (IOMUX_PINCM7)
+/* Defines for EncoderB: GPIOB.27 with pinCMx 58 on package pin 29 */
+#define GPIO_Encoder_EncoderB_PORT                                       (GPIOB)
+// pins affected by this interrupt request:["EncoderB"]
+#define GPIO_Encoder_GPIOB_INT_IRQN                             (GPIOB_INT_IRQn)
+#define GPIO_Encoder_GPIOB_INT_IIDX             (DL_INTERRUPT_GROUP1_IIDX_GPIOB)
+#define GPIO_Encoder_EncoderB_IIDX                          (DL_GPIO_IIDX_DIO27)
+#define GPIO_Encoder_EncoderB_PIN                               (DL_GPIO_PIN_27)
+#define GPIO_Encoder_EncoderB_IOMUX                              (IOMUX_PINCM58)
 
 /* clang-format on */
 
@@ -121,9 +173,12 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_Motor_init(void);
 void SYSCFG_DL_I2C_MPU6050_init(void);
 
 
+bool SYSCFG_DL_saveConfiguration(void);
+bool SYSCFG_DL_restoreConfiguration(void);
 
 #ifdef __cplusplus
 }

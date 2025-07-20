@@ -9,6 +9,8 @@ SYSCFG_SRCS += \
 ../mspm0-modules.syscfg 
 
 C_SRCS += \
+../Encoder.c \
+../Motor.c \
 ../main.c \
 ./ti_msp_dl_config.c \
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c 
@@ -22,6 +24,8 @@ GEN_FILES += \
 ./ti_msp_dl_config.c 
 
 C_DEPS += \
+./Encoder.d \
+./Motor.d \
 ./main.d \
 ./ti_msp_dl_config.d \
 ./startup_mspm0g350x_ticlang.d 
@@ -30,6 +34,8 @@ GEN_OPTS += \
 ./device.opt 
 
 OBJS += \
+./Encoder.o \
+./Motor.o \
 ./main.o \
 ./ti_msp_dl_config.o \
 ./startup_mspm0g350x_ticlang.o 
@@ -40,6 +46,8 @@ GEN_MISC_FILES += \
 ./Event.dot 
 
 OBJS__QUOTED += \
+"Encoder.o" \
+"Motor.o" \
 "main.o" \
 "ti_msp_dl_config.o" \
 "startup_mspm0g350x_ticlang.o" 
@@ -50,6 +58,8 @@ GEN_MISC_FILES__QUOTED += \
 "Event.dot" 
 
 C_DEPS__QUOTED += \
+"Encoder.d" \
+"Motor.d" \
 "main.d" \
 "ti_msp_dl_config.d" \
 "startup_mspm0g350x_ticlang.d" 
@@ -60,6 +70,8 @@ GEN_FILES__QUOTED += \
 "ti_msp_dl_config.c" 
 
 C_SRCS__QUOTED += \
+"../Encoder.c" \
+"../Motor.c" \
 "../main.c" \
 "./ti_msp_dl_config.c" \
 "D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c" 

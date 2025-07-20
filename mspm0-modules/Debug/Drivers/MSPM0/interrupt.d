@@ -1,6 +1,7 @@
 # FIXED
 
 Drivers/MSPM0/interrupt.o: ../Drivers/MSPM0/interrupt.c \
+ ../Drivers/MSPM0/interrupt.h \
  ti_msp_dl_config.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/msp/msp.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/DeviceFamily.h \
@@ -75,19 +76,8 @@ Drivers/MSPM0/interrupt.o: ../Drivers/MSPM0/interrupt.c \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_wwdt.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_interrupt.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_systick.h \
- ../Drivers/MSPM0/interrupt.h ../Drivers/MSPM0/clock.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/MPU6050/mpu6050.h \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/BNO08X_UART_RVC/bno08x_uart_rvc.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/WIT/wit.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api_strings.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_def.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_device.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_types.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform_log.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/LSM6DSV16X/lsm6dsv16x.h \
+ ../Drivers/MSPM0/clock.h \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/imu660rb.h \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/Fusion.h \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionAhrs.h \
@@ -96,7 +86,20 @@ Drivers/MSPM0/interrupt.o: ../Drivers/MSPM0/interrupt.c \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionAxes.h \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionCalibration.h \
  C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionCompass.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionOffset.h
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionOffset.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/LSM6DSV16X/lsm6dsv16x.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/MPU6050/mpu6050.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api_strings.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_def.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_device.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_types.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform_log.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/WIT/wit.h \
+ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/OLED_Software_I2C/oled_software_i2c.h
+../Drivers/MSPM0/interrupt.h:
 ti_msp_dl_config.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/msp/msp.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/DeviceFamily.h:
@@ -171,20 +174,8 @@ D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_vref.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_wwdt.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_interrupt.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_systick.h:
-../Drivers/MSPM0/interrupt.h:
-../Drivers/MSPM0/clock.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/MPU6050/mpu6050.h:
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/BNO08X_UART_RVC/bno08x_uart_rvc.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/WIT/wit.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api_strings.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_def.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_device.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_types.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform_log.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/LSM6DSV16X/lsm6dsv16x.h:
+../Drivers/MSPM0/clock.h:
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/imu660rb.h:
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/Fusion.h:
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionAhrs.h:
@@ -194,3 +185,15 @@ C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionAxes.h
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionCalibration.h:
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionCompass.h:
 C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/IMU660RB/Fusion/FusionOffset.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/LSM6DSV16X/lsm6dsv16x.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/MPU6050/mpu6050.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_api_strings.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_def.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_device.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_types.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/VL53L0X/vl53l0x_platform_log.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/WIT/wit.h:
+C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/OLED_Software_I2C/oled_software_i2c.h:

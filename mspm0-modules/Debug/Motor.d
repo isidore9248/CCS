@@ -1,8 +1,6 @@
 # FIXED
 
-Drivers/OLED_Software_I2C/oled_software_i2c.o: \
- ../Drivers/OLED_Software_I2C/oled_software_i2c.c \
- ../Drivers/OLED_Software_I2C/oled_software_i2c.h \
+Motor.o: ../Motor.c ../Motor.h \
  ti_msp_dl_config.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/msp/msp.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/DeviceFamily.h \
@@ -76,10 +74,8 @@ Drivers/OLED_Software_I2C/oled_software_i2c.o: \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_vref.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_wwdt.h \
  D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_interrupt.h \
- D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_systick.h \
- C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/MSPM0/clock.h \
- ../Drivers/OLED_Software_I2C/oledfont.h
-../Drivers/OLED_Software_I2C/oled_software_i2c.h:
+ D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_systick.h
+../Motor.h:
 ti_msp_dl_config.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/msp/msp.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/devices/DeviceFamily.h:
@@ -154,5 +150,3 @@ D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_vref.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/dl_wwdt.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_interrupt.h:
 D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/m0p/dl_systick.h:
-C:/Users/isidore/Desktop/OLED/mspm0-modules/Drivers/MSPM0/clock.h:
-../Drivers/OLED_Software_I2C/oledfont.h:
