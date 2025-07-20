@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "mspm0-modules",
+            "type": "ccs-debug",
+            "request": "launch",
+            "projectInfo": {
+                "name": "mspm0-modules",
+                "resourceId": "/mspm0-modules"
+            }
+        }
+    ]
+}
