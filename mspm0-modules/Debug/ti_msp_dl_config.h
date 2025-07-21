@@ -98,6 +98,14 @@ extern "C" {
 
 
 
+/* Defines for TIMER_10ms */
+#define TIMER_10ms_INST                                                  (TIMA0)
+#define TIMER_10ms_INST_IRQHandler                              TIMA0_IRQHandler
+#define TIMER_10ms_INST_INT_IRQN                                (TIMA0_INT_IRQn)
+#define TIMER_10ms_INST_LOAD_VALUE                                        (390U)
+
+
+
 
 /* Defines for I2C_MPU6050 */
 #define I2C_MPU6050_INST                                                    I2C0
@@ -114,6 +122,26 @@ extern "C" {
 #define GPIO_I2C_MPU6050_IOMUX_SCL_FUNC                 IOMUX_PINCM2_PF_I2C0_SCL
 
 
+/* Defines for UART_1 */
+#define UART_1_INST                                                        UART1
+#define UART_1_INST_FREQUENCY                                           40000000
+#define UART_1_INST_IRQHandler                                  UART1_IRQHandler
+#define UART_1_INST_INT_IRQN                                      UART1_INT_IRQn
+#define GPIO_UART_1_RX_PORT                                                GPIOA
+#define GPIO_UART_1_TX_PORT                                                GPIOA
+#define GPIO_UART_1_RX_PIN                                         DL_GPIO_PIN_9
+#define GPIO_UART_1_TX_PIN                                         DL_GPIO_PIN_8
+#define GPIO_UART_1_IOMUX_RX                                     (IOMUX_PINCM20)
+#define GPIO_UART_1_IOMUX_TX                                     (IOMUX_PINCM19)
+#define GPIO_UART_1_IOMUX_RX_FUNC                      IOMUX_PINCM20_PF_UART1_RX
+#define GPIO_UART_1_IOMUX_TX_FUNC                      IOMUX_PINCM19_PF_UART1_TX
+#define UART_1_BAUD_RATE                                                (115200)
+#define UART_1_IBRD_40_MHZ_115200_BAUD                                      (21)
+#define UART_1_FBRD_40_MHZ_115200_BAUD                                      (45)
+
+
+
+
 
 /* Port definition for Pin Group GPIO_MPU6050222 */
 #define GPIO_MPU6050222_PORT                                             (GPIOA)
@@ -126,6 +154,12 @@ extern "C" {
 #define GPIO_MPU6050222_PIN_MPU6050_INT_IIDX                (DL_GPIO_IIDX_DIO23)
 #define GPIO_MPU6050222_PIN_MPU6050_INT_PIN                     (DL_GPIO_PIN_23)
 #define GPIO_MPU6050222_PIN_MPU6050_INT_IOMUX                    (IOMUX_PINCM53)
+/* Port definition for Pin Group BUZZER */
+#define BUZZER_PORT                                                      (GPIOB)
+
+/* Defines for BUZZER1: GPIOB.4 with pinCMx 17 on package pin 52 */
+#define BUZZER_BUZZER1_PIN                                       (DL_GPIO_PIN_4)
+#define BUZZER_BUZZER1_IOMUX                                     (IOMUX_PINCM17)
 /* Port definition for Pin Group GPIO_OLED */
 #define GPIO_OLED_PORT                                                   (GPIOB)
 
@@ -166,6 +200,66 @@ extern "C" {
 #define GPIO_Encoder_EncoderB_IIDX                          (DL_GPIO_IIDX_DIO27)
 #define GPIO_Encoder_EncoderB_PIN                               (DL_GPIO_PIN_27)
 #define GPIO_Encoder_EncoderB_IOMUX                              (IOMUX_PINCM58)
+/* Defines for TRACK0: GPIOB.25 with pinCMx 56 on package pin 27 */
+#define TRACK_TRACK0_PORT                                                (GPIOB)
+#define TRACK_TRACK0_PIN                                        (DL_GPIO_PIN_25)
+#define TRACK_TRACK0_IOMUX                                       (IOMUX_PINCM56)
+/* Defines for TRACK1: GPIOA.24 with pinCMx 54 on package pin 25 */
+#define TRACK_TRACK1_PORT                                                (GPIOA)
+#define TRACK_TRACK1_PIN                                        (DL_GPIO_PIN_24)
+#define TRACK_TRACK1_IOMUX                                       (IOMUX_PINCM54)
+/* Defines for TRACK2: GPIOB.24 with pinCMx 52 on package pin 23 */
+#define TRACK_TRACK2_PORT                                                (GPIOB)
+#define TRACK_TRACK2_PIN                                        (DL_GPIO_PIN_24)
+#define TRACK_TRACK2_IOMUX                                       (IOMUX_PINCM52)
+/* Defines for TRACK3: GPIOB.13 with pinCMx 30 on package pin 1 */
+#define TRACK_TRACK3_PORT                                                (GPIOB)
+#define TRACK_TRACK3_PIN                                        (DL_GPIO_PIN_13)
+#define TRACK_TRACK3_IOMUX                                       (IOMUX_PINCM30)
+/* Defines for TRACK4: GPIOB.20 with pinCMx 48 on package pin 19 */
+#define TRACK_TRACK4_PORT                                                (GPIOB)
+#define TRACK_TRACK4_PIN                                        (DL_GPIO_PIN_20)
+#define TRACK_TRACK4_IOMUX                                       (IOMUX_PINCM48)
+/* Defines for TRACK5: GPIOB.18 with pinCMx 44 on package pin 15 */
+#define TRACK_TRACK5_PORT                                                (GPIOB)
+#define TRACK_TRACK5_PIN                                        (DL_GPIO_PIN_18)
+#define TRACK_TRACK5_IOMUX                                       (IOMUX_PINCM44)
+/* Defines for TRACK6: GPIOB.19 with pinCMx 45 on package pin 16 */
+#define TRACK_TRACK6_PORT                                                (GPIOB)
+#define TRACK_TRACK6_PIN                                        (DL_GPIO_PIN_19)
+#define TRACK_TRACK6_IOMUX                                       (IOMUX_PINCM45)
+/* Defines for KEY1: GPIOA.18 with pinCMx 40 on package pin 11 */
+#define KEY_KEY1_PORT                                                    (GPIOA)
+#define KEY_KEY1_PIN                                            (DL_GPIO_PIN_18)
+#define KEY_KEY1_IOMUX                                           (IOMUX_PINCM40)
+/* Defines for KEY2: GPIOA.15 with pinCMx 37 on package pin 8 */
+#define KEY_KEY2_PORT                                                    (GPIOA)
+#define KEY_KEY2_PIN                                            (DL_GPIO_PIN_15)
+#define KEY_KEY2_IOMUX                                           (IOMUX_PINCM37)
+/* Defines for KEY3: GPIOB.0 with pinCMx 12 on package pin 47 */
+#define KEY_KEY3_PORT                                                    (GPIOB)
+#define KEY_KEY3_PIN                                             (DL_GPIO_PIN_0)
+#define KEY_KEY3_IOMUX                                           (IOMUX_PINCM12)
+/* Defines for KEY4: GPIOA.17 with pinCMx 39 on package pin 10 */
+#define KEY_KEY4_PORT                                                    (GPIOA)
+#define KEY_KEY4_PIN                                            (DL_GPIO_PIN_17)
+#define KEY_KEY4_IOMUX                                           (IOMUX_PINCM39)
+/* Defines for KEY5: GPIOB.1 with pinCMx 13 on package pin 48 */
+#define KEY_KEY5_PORT                                                    (GPIOB)
+#define KEY_KEY5_PIN                                             (DL_GPIO_PIN_1)
+#define KEY_KEY5_IOMUX                                           (IOMUX_PINCM13)
+/* Defines for LED1: GPIOB.22 with pinCMx 50 on package pin 21 */
+#define LED_LED1_PORT                                                    (GPIOB)
+#define LED_LED1_PIN                                            (DL_GPIO_PIN_22)
+#define LED_LED1_IOMUX                                           (IOMUX_PINCM50)
+/* Defines for LED2: GPIOA.12 with pinCMx 34 on package pin 5 */
+#define LED_LED2_PORT                                                    (GPIOA)
+#define LED_LED2_PIN                                            (DL_GPIO_PIN_12)
+#define LED_LED2_IOMUX                                           (IOMUX_PINCM34)
+/* Defines for LED3: GPIOA.16 with pinCMx 38 on package pin 9 */
+#define LED_LED3_PORT                                                    (GPIOA)
+#define LED_LED3_PIN                                            (DL_GPIO_PIN_16)
+#define LED_LED3_IOMUX                                           (IOMUX_PINCM38)
 
 /* clang-format on */
 
@@ -174,7 +268,9 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_Motor_init(void);
+void SYSCFG_DL_TIMER_10ms_init(void);
 void SYSCFG_DL_I2C_MPU6050_init(void);
+void SYSCFG_DL_UART_1_init(void);
 
 
 bool SYSCFG_DL_saveConfiguration(void);

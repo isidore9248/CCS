@@ -1,8 +1,14 @@
+"./BUZZER.o"
 "./Encoder.o"
+"./JY61.o"
+"./Key.o"
+"./LED.o"
 "./Motor.o"
+"./TRACK.o"
 "./main.o"
 "./ti_msp_dl_config.o"
 "./startup_mspm0g350x_ticlang.o"
+"./usart.o"
 "./Drivers/MPU6050/inv_mpu.o"
 "./Drivers/MPU6050/inv_mpu_dmp_motion_driver.o"
 "./Drivers/MPU6050/mpu6050.o"
@@ -13,4 +19,4 @@
 -l"./device_linker.cmd"
 -ldevice.cmd.genlibs
 -llibc.a
--l"D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a"
+-l"C:/TI/mspm0_sdk_2_05_01_00/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a"

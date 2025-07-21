@@ -4,17 +4,23 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := D:/ccs/install/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS
+CG_TOOL_ROOT := F:/TI/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS
 
 GEN_OPTS__FLAG := @"./device.opt" 
 GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
 
 ORDERED_OBJS += \
+"./BUZZER.o" \
 "./Encoder.o" \
+"./JY61.o" \
+"./Key.o" \
+"./LED.o" \
 "./Motor.o" \
+"./TRACK.o" \
 "./main.o" \
 "./ti_msp_dl_config.o" \
 "./startup_mspm0g350x_ticlang.o" \
+"./usart.o" \
 "./Drivers/MPU6050/inv_mpu.o" \
 "./Drivers/MPU6050/inv_mpu_dmp_motion_driver.o" \
 "./Drivers/MPU6050/mpu6050.o" \
@@ -25,7 +31,7 @@ ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 -Wl,-ldevice.cmd.genlibs \
 -Wl,-llibc.a \
--Wl,-l"D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+-Wl,-l"C:/TI/mspm0_sdk_2_05_01_00/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
 
 -include ../makefile.init
 
@@ -152,15 +158,15 @@ all: $(OBJS) $(GEN_CMDS)
 mspm0-modules.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"D:/ccs/install/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -DMOTION_DRIVER_TARGET_MSPM0 -DMPU6050 -D__MSPM0G3507__ -gdwarf-3 -Wl,-m"mspm0-modules.map" -Wl,-i"D:/MSP/sdk/install/mspm0_sdk_2_05_00_05/source" -Wl,-i"C:/Users/isidore/Desktop/OLED/mspm0-modules" -Wl,-i"C:/Users/isidore/Desktop/OLED/mspm0-modules/Debug/syscfg" -Wl,-i"D:/ccs/install/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="mspm0-modules_linkInfo.xml" -Wl,--rom_model -o "mspm0-modules.out" $(ORDERED_OBJS)
+	"F:/TI/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -DMOTION_DRIVER_TARGET_MSPM0 -DMPU6050 -D__MSPM0G3507__ -gdwarf-3 -Wl,-m"mspm0-modules.map" -Wl,-i"C:/TI/mspm0_sdk_2_05_01_00/source" -Wl,-i"F:/TI/mspm0-modules" -Wl,-i"F:/TI/mspm0-modules/Debug/syscfg" -Wl,-i"F:/TI/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.3.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="mspm0-modules_linkInfo.xml" -Wl,--rom_model -o "mspm0-modules.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Encoder.o" "Motor.o" "main.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "Drivers\MPU6050\inv_mpu.o" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.o" "Drivers\MPU6050\mpu6050.o" "Drivers\MPU6050\mspm0_i2c.o" "Drivers\MSPM0\clock.o" "Drivers\MSPM0\interrupt.o" "Drivers\OLED_Software_I2C\oled_software_i2c.o" 
-	-$(RM) "Encoder.d" "Motor.d" "main.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "Drivers\MPU6050\inv_mpu.d" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.d" "Drivers\MPU6050\mpu6050.d" "Drivers\MPU6050\mspm0_i2c.d" "Drivers\MSPM0\clock.d" "Drivers\MSPM0\interrupt.d" "Drivers\OLED_Software_I2C\oled_software_i2c.d" 
+	-$(RM) "BUZZER.o" "Encoder.o" "JY61.o" "Key.o" "LED.o" "Motor.o" "TRACK.o" "main.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "usart.o" "Drivers\MPU6050\inv_mpu.o" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.o" "Drivers\MPU6050\mpu6050.o" "Drivers\MPU6050\mspm0_i2c.o" "Drivers\MSPM0\clock.o" "Drivers\MSPM0\interrupt.o" "Drivers\OLED_Software_I2C\oled_software_i2c.o" 
+	-$(RM) "BUZZER.d" "Encoder.d" "JY61.d" "Key.d" "LED.d" "Motor.d" "TRACK.d" "main.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "usart.d" "Drivers\MPU6050\inv_mpu.d" "Drivers\MPU6050\inv_mpu_dmp_motion_driver.d" "Drivers\MPU6050\mpu6050.d" "Drivers\MPU6050\mspm0_i2c.d" "Drivers\MSPM0\clock.d" "Drivers\MSPM0\interrupt.d" "Drivers\OLED_Software_I2C\oled_software_i2c.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

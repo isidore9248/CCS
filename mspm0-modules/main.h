@@ -19,5 +19,12 @@
 
 #include "Motor.h"
 #include "mpu6050.h"
+#include "Key.h"
+#include "LED.h"
+#include "JY61.h"
+#include "TRACK.h"
+#include "stdio.h"
+#include "usart.h"
+#include "BUZZER.h"
 
 #endif /* #ifndef _MAIN_H_ */

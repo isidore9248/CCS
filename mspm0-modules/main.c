@@ -1,35 +1,3 @@
-/*
- * Copyright (c) 2021, Texas Instruments Incorporated
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * *  Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * *  Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * *  Neither the name of Texas Instruments Incorporated nor the names of
- *    its contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
- * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 #include "main.h"
 #include "oled_software_i2c.h"
 #include "stdio.h"
@@ -42,9 +10,47 @@ uint8_t oled_buffer[32];
 
 uint32_t encoding_count0 = 0, encoding_count1 = 0;
 
+uint8_t RollL, RollH, PitchL, PitchH, YawL, YawH, VL, VH, SUM;
+// 新增：用于中断和主程序同步的标志位
+volatile uint8_t dataUpdated = 0; 
+// 修正：用volatile修饰中断中修改的变量
+volatile float Pitch, Roll, Yaw; 
+#define WAIT_HEADER1 0
+#define WAIT_HEADER2 1
+#define RECEIVE_DATA 2
+int regcountnow=0;
+int regcountbefore=0;
+uint8_t RxState = WAIT_HEADER1;
+uint8_t receivedData[9];
+uint8_t dataIndex = 0;
+int jy61state=0;
+volatile uint8_t newDataReady = 0;  // 新数据就绪标志
+//陀螺仪0-360
+
+uint8_t TRACK0;
+uint8_t TRACK1;
+uint8_t TRACK2;
+uint8_t TRACK3;
+uint8_t TRACK4;
+uint8_t TRACK5;
+uint8_t TRACK6;
+// uint8_t TRACK7;
+
+uint16_t times;
+uint16_t lasttimes;
+uint8_t shu;
+ 
 void NVIC_Init(void) {
   NVIC_ClearPendingIRQ(GPIO_Encoder_GPIOB_INT_IRQN);
-  NVIC_EnableIRQ(GPIO_Encoder_GPIOB_INT_IRQN);
+  NVIC_EnableIRQ(GPIO_Encoder_GPIOB_INT_IRQN);//group1 inint
+
+  NVIC_ClearPendingIRQ(UART_1_INST_INT_IRQN);
+	NVIC_EnableIRQ(UART_1_INST_INT_IRQN);//uart1 init
+
+  NVIC_ClearPendingIRQ(TIMER_10ms_INST_INT_IRQN);//开启10ms中断
+  NVIC_EnableIRQ(TIMER_10ms_INST_INT_IRQN);
+  DL_TimerG_startCounter(TIMER_10ms_INST); //time init
+    
 }
 
 int main(void) {
@@ -52,10 +58,11 @@ int main(void) {
   SysTick_Init();
   /* Don't remove this! */
   Interrupt_Init();
-  NVIC_Init();
+  NVIC_Init(); 
   //* 硬件外设初始化
   MPU6050_Init();
   OLED_Init();
+  UART1_Init();
 
   DL_TimerG_startCounter(Motor_INST);
   Motor1_On();
@@ -63,18 +70,119 @@ int main(void) {
 
   OLED_ShowInit();
 
+  LED1_OFF();
+   LED2_OFF();
+    LED3_OFF();
+Buzzer_OFF();
   while (1) {
     // OLED_show();
     // delay_ms(5000);
     // OLED_ShowString(1, 6, (uint8_t *)"finished", 16);
-    Motor1_Off();
-    Motor2_Off();
+    // Motor1_Off();
+    // Motor2_Off();
 
-    OLED_ShowCount();
-    OLED_ShowNum(0, 2, encoding_count0, 5, 16);
-    OLED_ShowNum(0, 4, encoding_count1, 5, 16);
+    // OLED_ShowCount();
+    // OLED_ShowNum(0, 2, encoding_count0, 5, 16);
+    // OLED_ShowNum(0, 4, encoding_count1, 5, 16);
+    OLED_ShowNum(2, 6, Yaw, 9, 16);
+    // OLED_ShowNum(2, 6, yaw_raw, 9, 16);
+
+    // Get_Infrared_State();
+    // OLED_ShowNum(0, 2, TRACK1, 5, 16);
+    // OLED_ShowNum(0, 4, TRACK0, 5, 16);
+    switch (Key_GetNum())
+    {
+      case 1:
+      LED1_ON();
+      break;
+      case 2:
+      LED2_ON();
+      break;
+      case 3:
+      LED3_ON();
+      break;
+      case 4:
+      Buzzer_ON();
+      break;
+      default:  
+              break;
+    }
+
+if(times - lasttimes >= 5) 
+  {
+    shu++;
+    lasttimes = times;
+    }
+    OLED_ShowNum(0, 4, shu, 5, 16);
+
   }
 }
+
+void TIMER_50ms_INST_IRQHandler(void)
+{
+    switch (DL_TimerG_getPendingInterrupt(TIMER_10ms_INST))
+     {
+        case DL_TIMER_IIDX_ZERO:
+        {
+          times++;
+        }
+        break;
+        default:
+        break;
+    }
+}
+
+void UART1_IRQHandler(void) {
+    switch(DL_UART_getPendingInterrupt(UART_1_INST)) {
+        case DL_UART_IIDX_RX: {
+            uint8_t uartdata = DL_UART_Main_receiveData(UART_1_INST);
+            
+            switch(RxState) {
+                case WAIT_HEADER1:
+                    if(uartdata == 0x55) RxState = WAIT_HEADER2;
+                    break;
+                    
+                case WAIT_HEADER2:
+                    if(uartdata == 0x53) {
+                        RxState = RECEIVE_DATA;
+                        dataIndex = 0;
+                    } else {
+                        RxState = WAIT_HEADER1;
+                    }
+                    break;
+                    
+                case RECEIVE_DATA:
+                    receivedData[dataIndex++] = uartdata;
+                    if(dataIndex >= 9) {
+                        // 仅保存原始数据
+                        RollL = receivedData[0];
+                        RollH = receivedData[1];
+                        PitchL = receivedData[2];
+                        PitchH = receivedData[3];
+                        YawL = receivedData[4];
+                        YawH = receivedData[5];
+                        
+                        int16_t yaw_raw = (YawH << 8 | YawL)/32768.0*180;//0-360
+                        Yaw = (float)yaw_raw;//(float)yaw_raw / 32768.0f * 180.0f;
+                        // if(Yaw>=180)  Yaw -= 360;
+                        
+                        //  if(Yaw > 180)  Yaw -= 360;
+                        //  if(Yaw < -180) Yaw += 360;
+                        // 设置数据就绪标志
+                        newDataReady = 1;
+                        
+                        RxState = WAIT_HEADER1;
+                    }
+                    break;
+            }
+            break;
+        }
+        
+        default:
+            break;
+    }
+}
+//以上为JY61初始化
 
 void GROUP1_IRQHandler(void) {
   uint32_t interruptStatus = DL_Interrupt_getPendingGroup(DL_INTERRUPT_GROUP_1);
@@ -108,7 +216,7 @@ void GROUP1_IRQHandler(void) {
 
 void OLED_ShowInit() {
   OLED_Clear();
-  OLED_ShowString(0, 0, (uint8_t *)"OLEDInit", 16);
+  // OLED_ShowString(0, 0, (uint8_t *)"OLEDInit", 16);
   // OLED_ShowString(0, 2, (uint8_t *)"MPU6050 Init", 16);
   // OLED_ShowString(0, 4, (uint8_t *)"Motor Init", 16);
 }
